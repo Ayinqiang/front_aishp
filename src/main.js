@@ -20,6 +20,11 @@ Vue.prototype.$cookie = jsCookie;
 
 Vue.config.productionTip = false;
 
+//使用element-ui
+import ElementUI from "element-ui";
+import "element-ui/lib/theme-chalk/index.css";
+Vue.use(ElementUI);
+
 /* eslint-disable no-new */
 new Vue({
   vuetify,

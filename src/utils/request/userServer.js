@@ -30,7 +30,7 @@ AXIOS.interceptors.request.use(
     if (token && token !== "") {
       config.headers["token"] = token; // 让每个请求携带自定义token 请根据实际情况自行修改
     }
-
+    config.inParams = config.params || config.data || {};
     return config;
   },
   error => {
@@ -47,9 +47,10 @@ AXIOS.interceptors.response.use(res => {
   console.log(
     "%c接口名",
     "background:#00b38a;color:#fff",
-    "${config.method} ${config.action}"
+    config.method,
+    apiBaseUrl + config.url
   );
-  console.log("入惨", config.inParams);
+  console.log("入参", config.inParams);
   console.log("出参", data);
   if (res.status == 200) {
     //未登录跳转至登录界面

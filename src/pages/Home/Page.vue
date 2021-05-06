@@ -59,10 +59,12 @@
                     <v-form>
                       <v-text-field dense
                                     class="my-2"
+                                    v-model="uid"
                                     label="账号"></v-text-field>
                       <v-text-field dense
                                     class="my-2"
                                     label="密码"
+                                    v-model="psw"
                                     type="password"></v-text-field>
                       <v-footer class="pa-0">
                         <v-btn @click="loginFunction"
@@ -119,13 +121,14 @@
                                     class="my-2"
                                     v-model="name"
                                     label="用户名"></v-text-field>
-                      <v-radio-group v-model="sexModel"
-                                     row>
-                        <v-radio label="男"
-                                 value="0"></v-radio>
-                        <v-radio label="女"
-                                 value="1"></v-radio>
-                      </v-radio-group>
+
+                      <el-radio-group style="width:100%"
+                                      v-model="sexs">
+                        <el-radio-button style="width:50%"
+                                         :label="0">男</el-radio-button>
+                        <el-radio-button style="width:50%"
+                                         :label="1">女</el-radio-button>
+                      </el-radio-group>
                       <v-text-field dense
                                     class="my-2"
                                     v-model="email"
@@ -165,7 +168,6 @@ export default {
       logo: require("../../assets/home/mylogo.png"),
       qq_icon: require("../../assets/home/icon-qq.png"),
       wx_icon: require("../../assets/home/wechat.png"),
-
       //登录标识
       login: 1,
       //表单信息 用户个人信息表单
@@ -178,7 +180,7 @@ export default {
       phone: '',  //手机号
       psw: '',    //密码
       s_psw: '',   //密码二次验证
-      sexModel: 1
+      sexs: null,
     }
   },
   methods: {
@@ -215,16 +217,23 @@ export default {
 
     },
     loginFunction() {
-      this.$message.warning('这是一条消息提示');
-
       const {
         uid,
         psw
       } = this;
-      loginUser(uid, psw).then((data => {
-        let code = data.code;
-        let msg = data.msg;
-        this.$message.success(msg);
+      const datas = {
+        uid,
+        psw
+      }
+      loginUser(datas).then((data => {
+        const code = data.code;
+        const msg = data.msg;
+
+        if (code === 2000) {
+          this.$message.success("登录成功");
+        } else {
+          this.$message.error(msg);
+        }
       }))
     }
   },

@@ -14,30 +14,29 @@ const AXIOS = axios.create({
   timeout: 20000
 });
 
-//添加拦截器自动携带token
-AXIOS.interceptors.request.use(
-  config => {
-    /*
-     判断是否存在token，如果存在，则每个header上都加上token
-    */
+// //添加拦截器自动携带token
+// AXIOS.interceptors.request.use(
+//   config => {
+//     /*
+//      判断是否存在token，如果存在，则每个header上都加上token
+//     */
 
-    //微信小程序使用asesstoken
-    // const token = localStorage.getItem("token");
-    // if (token !== null) {
-    //   config.headers.accessToken = token;
-    // }
-    let token = sessionStorage.getItem("token");
-    if (token && token !== "") {
-      config.headers["token"] = token; // 让每个请求携带自定义token 请根据实际情况自行修改
-    }
-    config.inParams = config.params || config.data || {};
-    return config;
-  },
-  error => {
-    console.log("request-.error :", error);
-    return Promise.reject(error);
-  }
-);
+//     //微信小程序使用asesstoken
+//     // const token = localStorage.getItem("token");
+//     // if (token !== null) {
+//     //   config.headers.accessToken = token;
+//     // }
+//     let token = sessionStorage.getItem("token");
+//     if (token && token !== "") {
+//       config.headers["token"] = token; // 让每个请求携带自定义token 请根据实际情况自行修改
+//     }
+//     return config;
+//   },
+//   error => {
+//     console.log("request-.error :", error);
+//     return Promise.reject(error);
+//   }
+// );
 
 //添加响应拦截器
 AXIOS.interceptors.response.use(res => {

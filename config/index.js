@@ -11,7 +11,7 @@ module.exports = {
     assetsPublicPath: "/",
     proxyTable: {
       "/api": {
-        target: "http://localhost:7500",
+        target: "http://localhost:7500/",
         // secure: false, // 如果是https接口，需要配置这个参数
         changeOrigin: true,
         pathRewrite: {

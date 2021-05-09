@@ -10,12 +10,20 @@ module.exports = {
     assetsSubDirectory: "static",
     assetsPublicPath: "/",
     proxyTable: {
-      "/api": {
+      "/user": {
         target: "http://localhost:7500/",
         // secure: false, // 如果是https接口，需要配置这个参数
         changeOrigin: true,
         pathRewrite: {
-          "^/api": ""
+          "^/user": ""
+        }
+      },
+      "/common": {
+        target: "http://localhost:7800/",
+        // secure: false, // 如果是https接口，需要配置这个参数
+        changeOrigin: true,
+        pathRewrite: {
+          "^/user": ""
         }
       }
     },

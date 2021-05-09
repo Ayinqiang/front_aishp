@@ -12,6 +12,7 @@ Vue.prototype.$axios = axios;
 //引入 Vuetify
 import Vuetify from "vuetify";
 import vuetify from "@/plugins/vuetify";
+import "@mdi/font/css/materialdesignicons.css";
 Vue.use(Vuetify);
 
 //引入 js-Cookie

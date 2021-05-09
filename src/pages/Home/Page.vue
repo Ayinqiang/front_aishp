@@ -159,7 +159,7 @@
 </template>
 
 <script>
-import { registerUser, loginUser } from "./page.server"
+import { registerUser, loginUser } from "../Home/server"
 export default {
   data() {
     return {
@@ -225,16 +225,16 @@ export default {
         uid,
         psw
       }
-      loginUser(datas).then((data => {
-        const code = data.code;
-        const msg = data.msg;
-
+      loginUser(datas).then((res) => {
+        const msg = res.data.msg;
+        const code = res.data.code;
         if (code === 2000) {
           this.$message.success("登录成功");
+          this.$router.push("/SellHome/Aishop");
         } else {
           this.$message.error(msg);
         }
-      }))
+      })
     }
   },
 
